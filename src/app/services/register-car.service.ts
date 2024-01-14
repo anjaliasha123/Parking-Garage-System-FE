@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { RegisterCarController } from '../controllers/register-car.controller';
+import { Vehicle } from '../models/vehicle';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,8 @@ export class RegisterCarService {
   makes: String[] = [];
   models: String[] = [];
   results : any[] = [];
-
+  registeredVehiclesDummy: Vehicle[] = [];
+  registeredVehicles: Subject<Vehicle[]> = new BehaviorSubject<Vehicle[]>([]);
   constructor(private registerCarController: RegisterCarController) { }
   getVehicleMakes(type: String){
     this.makes = [];
@@ -28,9 +31,18 @@ export class RegisterCarService {
       this.results = data['Results'];
       this.results.forEach(item =>{
         this.models.push(item["Model_Name"].toLowerCase());
-        console.log(item["Model_Name"]);
+        // console.log(item["Model_Name"]);
       });
     });
   }
-  registerCar(){}
+  pushRegisteredVehiclesData(){
+    console.log("Pushing the data");
+    this.registeredVehicles.next(this.registeredVehiclesDummy);
+  }
+  registerCar(vehicleData: Vehicle){
+    console.log("registered Car");
+    this.registeredVehiclesDummy.push(vehicleData);
+    this.pushRegisteredVehiclesData();
+  }
+  
 }

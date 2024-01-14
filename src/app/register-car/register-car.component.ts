@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RegisterCarService } from '../services/register-car.service';
-
+import { Vehicle } from '../models/vehicle';
 @Component({
   selector: 'app-register-car',
   templateUrl: './register-car.component.html',
@@ -26,5 +26,22 @@ export class RegisterCarComponent {
   this.registerCarService.getVehicleModel(this.vm);
   this.vehicleModels = this.registerCarService.models;
  }
- registerCar(){}
+ clearData(){
+  this.vt = '';
+  this.vm = '';
+  this.vmodel = '';
+  this.plate = '';
+  this.vehicleMakes = [];
+  this.vehicleModels = [];
+ }
+ registerCar(){
+  let vehicle : Vehicle = {
+    type: this.vt,
+    makeName: this.vm,
+    model: this.vmodel,
+    plate: this.plate
+  };
+  this.registerCarService.registerCar(vehicle);
+  this.clearData();
+ }
 }
