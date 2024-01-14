@@ -1,0 +1,27 @@
+<h1>{{title}}</h1>
+<h2>Your list of registered vehicles</h2>
+<div class="registered-vehicles">
+    <div *ngIf="registeredVehicles.length == 0">Please register your vehicles</div>
+    <div *ngIf="registeredVehicles.length != 0">
+        <div *ngFor="let v of registeredVehicles">
+            <label>Vehicle Type:</label>
+            <p>{{v.type}}</p>
+            <label>Vehicle Number</label>
+            <p>{{v.plate}}</p>
+        </div>
+    </div>
+</div>
+<h2>Your parked Spots</h2>
+<div class="parked-spots">
+    <div *ngIf="parkedSpots.length == 0">You have no vehicles parked</div>
+    <div *ngIf="parkedSpots.length != 0">
+        <div *ngFor="let p of parkedSpots">
+            <label>Plate Number: </label>
+            <p>{{p.vehiclePlate}}</p>
+            <label>Floor Number: </label>
+            <p>{{p.floorNumber}}</p>
+            <label>Spot Number: </label>
+            <p>{{p.spotId}}</p>
+        </div>
+    </div>
+</div>
