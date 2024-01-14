@@ -1,1 +1,6 @@
-<p>park-car works!</p>
+<h1>Welcome To Park your Vehicle</h1>
+<label>Pick Floor</label>
+<select name="floor" id="floor" [(ngModel)]="pf">
+    <option *ngFor="let number of floors">{{number}}</option>
+</select>
+Floor number picked: {{pf}}

@@ -1,5 +1,5 @@
-export class Parking {
-    vehiclePlate: String = '';
-    floorNumber: Number = 0;
-    spotId: String = '';
+export interface Parking {
+    vehiclePlate: String ,
+    floorNumber: Number,
+    spotId: String 
 }
