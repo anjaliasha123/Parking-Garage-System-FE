@@ -1,6 +1,31 @@
 <h1>Welcome To Park your Vehicle</h1>
-<label>Pick Floor</label>
-<select name="floor" id="floor" [(ngModel)]="pf">
-    <option *ngFor="let number of floors">{{number}}</option>
-</select>
-Floor number picked: {{pf}}
+<div *ngIf="registeredCar.length == 0">You do not have any vehicles to be parked.</div>
+<div *ngIf="registeredCar.length > 0">
+    <!-- Pick the vehicle to park -->
+    <div class="pick-vehicle">
+        <label>Pick Vehicle</label>
+        <select name="vehicle" id="vehicle" [(ngModel)] = "pv">
+            <option value="default"></option>
+            <option *ngFor="let vehicle of registeredCar" [value]="vehicle.plate">{{vehicle.plate}} - {{vehicle.type}}</option>
+        </select>
+        Vehicle picked: {{pv}}
+    </div>
+    <!-- Pick the floor to park -->
+    <div class="pick-floor">
+        <label>Pick Floor</label>
+        <select name="floor" id="floor" [(ngModel)]="pf" (change)="selectSpot()">
+            <option *ngFor="let number of floors">{{number}}</option>
+        </select>
+        Floor number picked: {{pf}}
+    </div>
+    <!-- Pick the spot to park -->
+    <div class="pick-spot" *ngIf="pf != 0">
+        <label>Pick Spot</label>
+        <select name="spot" id="spot" [(ngModel)]="ps">
+            <option *ngFor="let spot of spots">{{spot}}</option>
+        </select>
+        Spot number picked: {{ps}}
+    </div>
+    <button *ngIf="pf!= 0 && ps.length != 0 && pv.length != 0" (click)="parkVehicke()">Park Vehicle</button>
+</div>
+
