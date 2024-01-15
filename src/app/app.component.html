@@ -1,3 +1,9 @@
-<app-home-page></app-home-page>
-<app-register-car></app-register-car>
-<app-park-car></app-park-car>
+<h1>{{title}}</h1>
+<nav>
+    <a routerLink="/login" acti>Login</a> | 
+    <a routerLink="/register">Register</a> |
+    <a routerLink="/home">Home Page</a> |
+    <a routerLink="/vehicle">Register Vehicle</a> |
+    <a routerLink="/park">Park Vehicle</a>
+</nav>
+<router-outlet></router-outlet>

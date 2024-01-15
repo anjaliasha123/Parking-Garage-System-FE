@@ -9,6 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ParkCarComponent } from './park-car/park-car.component';
 import { RegisterCarComponent } from './register-car/register-car.component';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
