@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Vehicle } from '../models/vehicle';
 import { Parking } from '../models/parking';
 import { RegisterCarService } from '../services/register-car.service';
+import { ParkVehicleService } from '../services/park-vehicle.service';
 
 @Component({
   selector: 'app-home-page',
@@ -13,9 +14,10 @@ export class HomePageComponent implements OnInit{
   registeredVehicles: Vehicle[] = [];
   parkedSpots: Parking[] = [];
 
-  constructor(private registerCarService: RegisterCarService){}
+  constructor(private registerCarService: RegisterCarService, private parkingCarService: ParkVehicleService){}
   ngOnInit(): void{
     this.registerCarService.registeredVehicles.subscribe(data => this.registeredVehicles = data);
     this.registerCarService.pushRegisteredVehiclesData();
+    this.parkingCarService.parkedVehicleListForHomePage.subscribe(data=> this.parkedSpots = data);
   }
 }
