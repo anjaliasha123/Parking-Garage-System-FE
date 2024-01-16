@@ -8,12 +8,14 @@ import { ParkCarComponent } from './park-car/park-car.component';
 import { RegisterCarComponent } from './register-car/register-car.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {path: 'login', component: LoginFormComponent},
   {path: 'register', component: RegisterFormComponent},
-  {path: 'home', component: HomePageComponent},
+  {path: 'home', component: HomePageComponent, children: []},
   {path: 'park', component: ParkCarComponent},
-  {path: 'vehicle', component: RegisterCarComponent}
+  {path: 'vehicle', component: RegisterCarComponent},
+  {path: '**', component: LoginFormComponent}
 ];
 
 @NgModule({

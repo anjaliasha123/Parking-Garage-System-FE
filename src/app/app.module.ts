@@ -8,7 +8,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ParkCarComponent } from './park-car/park-car.component';
 import { RegisterCarComponent } from './register-car/register-car.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -24,7 +24,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
