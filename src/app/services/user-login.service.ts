@@ -20,15 +20,21 @@ export class UserLoginService {
     });
   }
   onLogin(userData: any){
-    this.userLoginController.loginUser(userData).subscribe((data: any) => {
-      console.log(data);
-      if(data.result){
-        alert('Login success');
-        localStorage.setItem('loginToken', data.data.token);
-        this.router.navigateByUrl('/home');
-      }else{
-        alert(data.message)
+    let emailId = userData.email;
+    let pwd = userData.password;
+    this.userLoginController.loginUser(emailId).subscribe((response: any)=>{
+      if(response.status === 200){
+        if(pwd === response.body['password']) {
+          alert('Success login');
+          this.router.navigateByUrl('/home');
+        }else alert('please re-enter password');
       }
-    });
+    },
+    error=> {
+      console.log(error);
+      alert('Please register');
+      this.router.navigateByUrl('/register');
+    }
+    );
   }
 }

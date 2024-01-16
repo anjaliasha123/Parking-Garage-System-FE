@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { FormBuilder, FormControl, NgModel, Validators } from '@angular/forms';
 import { UserLoginService } from '../services/user-login.service';
 
 @Component({
@@ -12,8 +12,18 @@ export class LoginFormComponent {
     EmailId: "",
     Password: ""
   };
-  constructor(private userLoginService: UserLoginService){}
+  constructor(private userLoginService: UserLoginService, private formBuilder: FormBuilder){}
+  loginForm = this.formBuilder.group({
+    email : ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]]
+  });
+
   onLogin(){
-    this.userLoginService.onLogin(this.loginObject);
+    let loginData : Object = {
+      email : this.loginForm.get("email")?.value,
+      password: this.loginForm.get("password")?.value
+    };
+    this.userLoginService.onLogin(loginData);
+    // this.userLoginService.onLogin(this.loginObject);
   }
 }
