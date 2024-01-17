@@ -55,7 +55,7 @@ export class ParkCarComponent implements OnInit{
     };
     this.parkVehicleService.getParkedVehicle(parkedVehicle);
     // remove the parked vehicle from the registeredVehicle list
-    let dummyRegisteredVehicleList = this.registeredCar.filter(data => data.plate != parkedVehicle.vehiclePlate);
+    let dummyRegisteredVehicleList = this.registeredCar.filter(data => data.licensePlate != parkedVehicle.vehiclePlate);
     this.registeredCar = dummyRegisteredVehicleList;
     console.log(parkedVehicle);
     this.floorObject[this.pf - 1][this.ps] = true;

@@ -4,11 +4,11 @@
     <div *ngIf="registeredVehicles.length == 0">Please register your vehicles</div>
     <div *ngIf="registeredVehicles.length != 0">
         <div *ngFor="let v of registeredVehicles">
-            <label>Vehicle Type:</label>
-            <p>{{v.type}}</p>
+            <label>Vehicle Color:</label>
+            <p>{{v.color}}</p>
             <label>Vehicle Number</label>
-            <p>{{v.plate}}</p>
-            <button>Remove Vehicle</button>
+            <p>{{v.licensePlate}}</p>
+            <button (click)="onDeleteVehicle(v)">Remove Vehicle</button>
         </div>
     </div>
 </div>

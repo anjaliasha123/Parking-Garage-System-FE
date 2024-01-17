@@ -20,4 +20,8 @@ export class HomePageComponent implements OnInit{
     this.registerCarService.pushRegisteredVehiclesData();
     this.parkingCarService.parkedVehicleListForHomePage.subscribe(data=> this.parkedSpots = data);
   }
+  onDeleteVehicle(v: Vehicle){
+    console.log('delete vehicle: ',v);
+    this.registerCarService.deleteCar(v);
+  }
 }

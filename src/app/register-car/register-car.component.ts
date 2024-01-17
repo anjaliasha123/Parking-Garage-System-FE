@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RegisterCarService } from '../services/register-car.service';
 import { Vehicle } from '../models/vehicle';
+import { Make } from '../models/make';
 @Component({
   selector: 'app-register-car',
   templateUrl: './register-car.component.html',
@@ -8,38 +9,40 @@ import { Vehicle } from '../models/vehicle';
 })
 export class RegisterCarComponent {
   vt: String ='';
-  vm: String = '';
-  vmodel: String = '';
-  plate: String = '';
+  vm: number= 0;
+  // vmodel: String = '';
+  plate: string = '';
+  color: string = '';
  vehicleTypes: String[] = ['Car', 'Motorcycle', 'Truck', 'Trailer'];
- vehicleMakes: String[] = [];
- vehicleModels: String[] = [];
+ vehicleMakes: Make[] = [];
+//  vehicleModels: String[] = [];
  constructor(private registerCarService: RegisterCarService){}
  getMakes(){
   this.vehicleMakes = []
   this.registerCarService.getVehicleMakes(this.vt);
   this.vehicleMakes = this.registerCarService.makes;
  }
- getModels(){
-  this.vmodel = '';
-  this.vehicleModels = [];
-  this.registerCarService.getVehicleModel(this.vm);
-  this.vehicleModels = this.registerCarService.models;
- }
+//  getModels(){
+//   this.vmodel = '';
+//   this.vehicleModels = [];
+//   this.registerCarService.getVehicleModel(this.vm);
+//   this.vehicleModels = this.registerCarService.models;
+//  }
  clearData(){
   this.vt = '';
-  this.vm = '';
-  this.vmodel = '';
+  this.vm = 0;
+  this.color = '';
+  // this.vmodel = '';
   this.plate = '';
   this.vehicleMakes = [];
-  this.vehicleModels = [];
+  // this.vehicleModels = [];
  }
  registerCar(){
   let vehicle : Vehicle = {
-    type: this.vt,
-    makeName: this.vm,
-    model: this.vmodel,
-    plate: this.plate
+    makeId: this.vm,
+    color: this.color,
+    licensePlate: this.plate,
+    userId : +localStorage.getItem('userId')!
   };
   this.registerCarService.registerCar(vehicle);
   this.clearData();

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { UserLoginController } from '../controllers/user-login.controller';
 import { Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserLoginService {
-
+  userLoginStatus: Subject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(private userLoginController: UserLoginController, private router: Router) { }
   registerUser(user: Object){
     this.userLoginController.registerUser(user).subscribe(data =>{
@@ -26,6 +27,8 @@ export class UserLoginService {
       if(response.status === 200){
         if(pwd === response.body['password']) {
           alert('Success login');
+          this.userLoginStatus.next(true);
+          localStorage.setItem('userId', response.body['id']);
           this.router.navigateByUrl('/home');
         }else alert('please re-enter password');
       }

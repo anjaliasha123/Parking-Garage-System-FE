@@ -8,21 +8,25 @@
 
 <div *ngIf="vehicleMakes.length > 0">
     <label for="vehicle-make">Choose make of your vehicle:</label>
-    <select name="vehicle-make" id="make" [(ngModel)]="vm" (change)="getModels()">
-        <option *ngFor="let make of vehicleMakes" [value]="make" >{{make}}</option> 
+    <select name="vehicle-make" id="make" [(ngModel)]="vm">
+        <option *ngFor="let make of vehicleMakes" [value]="make.id" >{{make.name}}</option> 
     </select>
     <p>You elected: {{vm}}</p>
 </div>
+<div class="color" *ngIf="vm!= 0">
+    <label>Colour:</label>
+    <input type="text" [(ngModel)]="color"/>
+</div>
 
-<div *ngIf="vehicleModels.length > 0">
+<!-- <div *ngIf="vehicleModels.length > 0">
     <label for="vehicle-model">Choose model of your vehicle:</label>
     <select name="vehicle-model" id="model" [(ngModel)]="vmodel">
         <option *ngFor="let model of vehicleModels" [value]="model" >{{model}}</option> 
     </select>
     <p>You elected: {{vmodel}}</p>
-</div>
-<div *ngIf="vmodel.length != 0">
+</div> -->
+<div *ngIf="vm != 0">
     <label>Enter Plate Number</label>
     <input type="text" [(ngModel)]="plate" />
 </div>
-<button (click)="registerCar()" [disabled]="vmodel.length == 0">Register Car</button>
+<button (click)="registerCar()" [disabled]="vm == 0">Register Car</button>

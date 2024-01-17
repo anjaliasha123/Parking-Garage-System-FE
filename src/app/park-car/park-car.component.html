@@ -6,7 +6,7 @@
         <label>Pick Vehicle</label>
         <select name="vehicle" id="vehicle" [(ngModel)] = "pv">
             <option value="default"></option>
-            <option *ngFor="let vehicle of registeredCar" [value]="vehicle.plate">{{vehicle.plate}} - {{vehicle.type}}</option>
+            <option *ngFor="let vehicle of registeredCar" [value]="vehicle.licensePlate">{{vehicle.licensePlate}} - {{vehicle.color}}</option>
         </select>
         Vehicle picked: {{pv}}
     </div>
