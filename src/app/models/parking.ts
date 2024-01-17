@@ -1,5 +1,7 @@
 export interface Parking {
-    vehiclePlate: String ,
-    floorNumber: Number,
-    spotId: String 
+    userId: number,
+    garageId: number,
+    floorNumber: number,
+    spotNumber: String ,
+    vehicleId: String 
 }

@@ -18,11 +18,11 @@
     <div *ngIf="parkedSpots.length != 0">
         <div *ngFor="let p of parkedSpots">
             <label>Plate Number: </label>
-            <p>{{p.vehiclePlate}}</p>
+            <p>{{p.vehicleId}}</p>
             <label>Floor Number: </label>
             <p>{{p.floorNumber}}</p>
             <label>Spot Number: </label>
-            <p>{{p.spotId}}</p>
+            <p>{{p.spotNumber}}</p>
         </div>
     </div>
 </div>

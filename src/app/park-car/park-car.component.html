@@ -4,11 +4,20 @@
     <!-- Pick the vehicle to park -->
     <div class="pick-vehicle">
         <label>Pick Vehicle</label>
-        <select name="vehicle" id="vehicle" [(ngModel)] = "pv">
+        <select name="vehicle" id="vehicle" [(ngModel)] = "pv" (change)="getGaragesList()">
             <option value="default"></option>
             <option *ngFor="let vehicle of registeredCar" [value]="vehicle.licensePlate">{{vehicle.licensePlate}} - {{vehicle.color}}</option>
         </select>
         Vehicle picked: {{pv}}
+    </div>
+    <!-- dispaly all garages -->
+    <div class="pick-garage">
+        <label>Pick Garage</label>
+        <select name="garage" id="garage" [(ngModel)] = "garageId" (change)="setFloorsForGarage()">
+            <option value="default"></option>
+            <option *ngFor="let g of garages" [value]="g.id">Name: {{g.street}} - #Floors: {{g.floors}}</option>
+        </select>
+        Garage picked: {{garageId}}
     </div>
     <!-- Pick the floor to park -->
     <div class="pick-floor">
