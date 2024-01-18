@@ -23,4 +23,7 @@ export class RegisterCarController{
     deleteVehicle(vehicleData: Vehicle){
         return this.http.delete(this.baseUrl+"vehicles?vehicleId="+vehicleData.licensePlate);
     }
+    getAllVehiclesByUserId(userId: number){
+        return this.http.get(this.baseUrl+"vehicles/user/"+userId);
+    }
 }

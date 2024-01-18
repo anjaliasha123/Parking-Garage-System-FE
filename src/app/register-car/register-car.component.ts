@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RegisterCarService } from '../services/register-car.service';
 import { Vehicle } from '../models/vehicle';
 import { Make } from '../models/make';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register-car',
   templateUrl: './register-car.component.html',
@@ -16,7 +17,7 @@ export class RegisterCarComponent {
  vehicleTypes: String[] = ['Car', 'Motorcycle', 'Truck', 'Trailer'];
  vehicleMakes: Make[] = [];
 //  vehicleModels: String[] = [];
- constructor(private registerCarService: RegisterCarService){}
+ constructor(private registerCarService: RegisterCarService, private router: Router){}
  getMakes(){
   this.vehicleMakes = []
   this.registerCarService.getVehicleMakes(this.vt);
@@ -46,5 +47,6 @@ export class RegisterCarComponent {
   };
   this.registerCarService.registerCar(vehicle);
   this.clearData();
+  this.router.navigateByUrl("/home");
  }
 }

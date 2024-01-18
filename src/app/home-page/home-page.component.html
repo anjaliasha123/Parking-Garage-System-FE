@@ -1,28 +1,45 @@
 <h1>{{title}}</h1>
 <h2>Your list of registered vehicles</h2>
-<div class="registered-vehicles">
-    <div *ngIf="registeredVehicles.length == 0">Please register your vehicles</div>
-    <div *ngIf="registeredVehicles.length != 0">
-        <div *ngFor="let v of registeredVehicles">
-            <label>Vehicle Color:</label>
-            <p>{{v.color}}</p>
-            <label>Vehicle Number</label>
-            <p>{{v.licensePlate}}</p>
-            <button (click)="onDeleteVehicle(v)">Remove Vehicle</button>
-        </div>
-    </div>
+
+<div *ngIf="registeredVehicles.length == 0">Please register your vehicles</div>
+<div class="registered-vehicles" *ngIf="registeredVehicles.length != 0">
+    <table>
+        <tr>
+          <th>Make Id</th>
+          <th>License Plate</th>
+          <th>Color</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let v of registeredVehicles">
+          <td>{{v.makeId}}</td>
+          <td>{{v.licensePlate}}</td>
+          <td>{{v.color}}</td>
+          <td><button (click)="onDeleteVehicle(v)">Remove Vehicle</button></td>
+        </tr>
+
+      </table>
 </div>
+<hr>
 <h2>Your parked Spots</h2>
-<div class="parked-spots">
-    <div *ngIf="parkedSpots.length == 0">You have no vehicles parked</div>
-    <div *ngIf="parkedSpots.length != 0">
-        <div *ngFor="let p of parkedSpots">
-            <label>Plate Number: </label>
-            <p>{{p.vehicleId}}</p>
-            <label>Floor Number: </label>
-            <p>{{p.floorNumber}}</p>
-            <label>Spot Number: </label>
-            <p>{{p.spotNumber}}</p>
-        </div>
-    </div>
+
+<div *ngIf="parkedSpots.length == 0">You have no vehicles parked</div>
+<div class="parked-vehicles" *ngIf="parkedSpots.length != 0">
+    <table>
+        <tr>
+          <th>GarageId</th>
+          <th>Floor Number</th>
+          <th>Spot Number</th>
+          <th>Vehicle Id</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let p of parkedSpots">
+          <td>{{p.garageId}}</td>
+          <td>{{p.floorNumber}}</td>
+          <td>{{p.spotNumber}}</td>
+          <td>{{p.vehicleId}}</td>
+          <td><button (click)="onDeleteParking(p)">Remove Parking</button></td>
+        </tr>
+
+      </table>
 </div>
+

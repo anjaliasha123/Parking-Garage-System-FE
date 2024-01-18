@@ -1,4 +1,5 @@
 export interface Parking {
+    id?: number,
     userId: number,
     garageId: number,
     floorNumber: number,

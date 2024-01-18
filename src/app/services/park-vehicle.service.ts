@@ -37,4 +37,19 @@ export class ParkVehicleService {
       console.log(data);
     });
   }
+  getAllParkingsByUserId(userId: number){
+    this.parkeVehicleController.getAllParkingByUserId(userId).subscribe((data: any) =>{
+      console.log(data, 'these are the parked ones');
+      this.parkedVehicleList = data;
+      this.setParkedVehicleListForHomePage();
+    });
+  }
+  deleteParking(parkId: number, userId: number){
+    this.parkeVehicleController.deleteParking(parkId).subscribe(
+      (data: any) =>{
+        this.getAllParkingsByUserId(userId);
+        alert(data.status);
+      }
+    )
+  }
 }

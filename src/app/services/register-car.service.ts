@@ -61,5 +61,12 @@ export class RegisterCarService {
       alert(data.status);
     })
   }
+  getVehiclesByUserId(userId: number){
+    this.registerCarController.getAllVehiclesByUserId(userId).subscribe((data: any)=>{
+      console.log(data,' already registered cars');
+      this.registeredVehiclesDummy = data;
+      this.pushRegisteredVehiclesData();
+    });
+  }
   
 }

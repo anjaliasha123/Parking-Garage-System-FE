@@ -16,12 +16,20 @@ export class HomePageComponent implements OnInit{
 
   constructor(private registerCarService: RegisterCarService, private parkingCarService: ParkVehicleService){}
   ngOnInit(): void{
+    
+    // this.parkingCarService.parkedVehicleListForHomePage.subscribe(data=> this.parkedSpots = data);
+    this.registerCarService.getVehiclesByUserId(+localStorage.getItem("userId")!);
     this.registerCarService.registeredVehicles.subscribe(data => this.registeredVehicles = data);
     this.registerCarService.pushRegisteredVehiclesData();
+    this.parkingCarService.getAllParkingsByUserId(+localStorage.getItem("userId")!);
     this.parkingCarService.parkedVehicleListForHomePage.subscribe(data=> this.parkedSpots = data);
   }
   onDeleteVehicle(v: Vehicle){
     console.log('delete vehicle: ',v);
     this.registerCarService.deleteCar(v);
+  }
+  onDeleteParking(p: Parking){
+    console.log(p.id);
+    this.parkingCarService.deleteParking(p.id!, +localStorage.getItem("userId")!);
   }
 }

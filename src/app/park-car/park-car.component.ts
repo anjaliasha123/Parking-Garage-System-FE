@@ -5,6 +5,7 @@ import { Vehicle } from '../models/vehicle';
 import { RegisterCarService } from '../services/register-car.service';
 import { ParkVehicleService } from '../services/park-vehicle.service';
 import { Garage } from '../models/garage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-park-car',
@@ -36,7 +37,7 @@ export class ParkCarComponent implements OnInit{
     }
   ];
   registeredCar: Vehicle[] = [];
-  constructor(private registerCarService: RegisterCarService, private parkVehicleService: ParkVehicleService){}
+  constructor(private registerCarService: RegisterCarService, private parkVehicleService: ParkVehicleService, private router: Router){}
   ngOnInit(): void{
     this.registerCarService.registeredVehicles.subscribe(data => this.registeredCar = data);
     this.registerCarService.pushRegisteredVehiclesData();
@@ -70,6 +71,7 @@ export class ParkCarComponent implements OnInit{
     this.pf = 0;
     this.ps = "";
     this.pv = "";
+    this.router.navigateByUrl("/home");
   }
   getGaragesList(){
     this.parkVehicleService.getAvailableGaragesFromDatabase();

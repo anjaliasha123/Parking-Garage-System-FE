@@ -16,4 +16,10 @@ export class ParkVehicleController{
     parkVehicle(park: Parking){
         return this.http.post(this.baseUrl+"space", park);
     }
+    getAllParkingByUserId(userId: number){
+        return this.http.get(this.baseUrl+"space?user="+userId);
+    }
+    deleteParking(parkId: number){
+        return this.http.delete(this.baseUrl+"space/"+parkId);
+    }
 }
